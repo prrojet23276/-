@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تهنئة التخرج 🎓</title>
+  <style>
+
+    body {
+      margin: 0;
+      padding: 0;
+     background: linear-gradient(180deg,
+  #fccccc 0%,
+  #c49797 25%,
+  #d7d8a4 60%,
+  #7b7b9b 100%
+);
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .main {
+      padding: 30px 20px;
+      animation: fadeIn 2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hat {
+      font-size: 80px;
+      animation: bounceIn 1s ease;
+    }
+
+    .name {
+      font-size: 36px;
+      color: #ffffff;
+      font-weight: bold;
+      margin: 10px 0;
+      text-shadow: 0 0 10px rgba(255,215,0,0.5);
+    }
+
+    .message {
+      font-size: 18px;
+      color: #f0e0ff;
+      line-height: 1.8;
+      max-width: 350px;
+      margin: 0 auto 20px;
+    }
+
+    .photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #f0f0f0;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 0 20px rgba(255,215,0,0.4);
+    }
+
+    /* ===== صورة Digital Circus الصغيرة ===== */
+    .deco-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 20px auto;
+      display: block;
+      border: 3px solid #ffffff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* ===== زر الهدية ===== */
+    .gift-btn {
+      display: none;
+      margin: 30px auto;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #701818, #626b7c);
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      box-shadow: 0 8px 20px rgba(255,68,68,0.4);
+    }
+
+    /* ===== نافذة الهدية ===== */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .gift-box {
+      background: linear-gradient(135deg, #1a0a2e, #3d0a0a);
+      border: 2px solid #dad5bd;
+      border-radius: 20px;
+      padding: 30px;
+      width: 85%;
+      max-width: 350px;
+      animation: popIn 0.5s ease;
+      position: relative;
+    }
+
+    .gift-box img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .gift-box p {
+      font-size: 17px;
+      color: #f0e0ff;
+      line-height: 1.8;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #fffced;
+      background: none;
+      border: none;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounceIn {
+      0%   { transform: scale(0); }
+      60%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.05); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <div class="main">
+    <div class="hat">🎓</div>
+    <div class="name">الف مبروك التخرج حبيبتي غلا ✨</div>
+
+    <img class="photo" src="صورتها.jpg">
+
+    <div class="message">
+      اكتبي هنا كلام التهنئة 💛<br>
+      مثل: كل عام وأنتِ بخير...
+    </div>
+
+    <!-- صورة Digital Circus صغيرة تحت الكلام -->
+    <img class="deco-img" src="s1.jpg" alt="">
+
+    <button class="gift-btn" id="giftBtn" onclick="openGift()">
+      🎁 افتحي الهدية
+    </button>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="gift-box">
+      <button class="close-btn" onclick="closeGift()">✕</button>
+      <img src="هديتها.jpg" alt="الهدية">
+      <p>اكتبي هنا كلام الهدية المميز 🎀</p>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('giftBtn').style.display = 'block';
+    }, 2000);
+
+    function openGift() {
+      document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function closeGift() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function randomColor() {
+      const colors = ['#FFD700','#ff4444','#4444ff','#ff44ff','#ffffff'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function launchFirework() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height * 0.5;
+      for (let i = 0; i < 60; i++) {
+        const angle = (Math.PI * 2 / 60) * i;
+        const speed = 2 + Math.random() * 3;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: randomColor(),
+          size: 3 + Math.random() * 2,
+          type: 'firework'
+        });
+      }
+    }
+
+    function addBalloon() {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 30,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: -(2 + Math.random() * 2),
+        alpha: 1,
+        size: 18 + Math.random() * 12,
+        type: 'balloon'
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        ctx.globalAlpha = p.alpha;
+        if (p.type === 'firework') {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.05;
+          p.alpha -= 0.015;
+        }
+        if (p.type === 'balloon') {
+          ctx.font = `${p.size * 2}px serif`;
+          ctx.fillText('🎈', p.x, p.y);
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.004;
+        }
+        if (p.alpha <= 0) particles.splice(i, 1);
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+    setInterval(launchFirework, 2000);
+    launchFirework();
+    setInterval(addBalloon, 1000);
+  </script>
+
+</body>
+</html>
